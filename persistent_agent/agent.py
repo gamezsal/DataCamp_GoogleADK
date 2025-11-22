@@ -170,6 +170,7 @@ service = DatabaseSessionService(db_url=DB_URL)
 initial_state = {"user_name": "Bob", "habits": []}
 
 # seeing if we have a pre-existing session
+# seeing if we have a pre-existing session
 resp = service.list_sessions(app_name=APP_NAME, user_id=USER_ID)
 if resp.sessions:
     SESSION_ID = resp.sessions[0].id
@@ -184,6 +185,8 @@ else:
 
 # creating our runner
 runner = Runner(agent=habit_agent, app_name=APP_NAME, session_service=service)
+
+root_agent = habit_agent
 
 # Printing habits - FOR DEBUGGING PURPOSES (can delete if needed)
 def print_habits(habits):

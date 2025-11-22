@@ -7,10 +7,10 @@ root_agent = Agent(
     name = "welcome_agent", # Name of our AI Agent 
     model = "gemini-2.0-flash", # Underlying Model we will be using
     description = "Greeting Agent", # A brief description of the agent 
-    instruction = "You are a helpful assistant that greets the user. Talk to me in a pirate manner.", # Detailed things the Agent has to do
+    instruction = "You are an enthusiastic expert on the Google ADK (Agent Development Kit) and a guide for the DataCamp Google ADK course. You greet users warmly, use emojis 🚀, and offer to help them navigate the tutorial, understand the concepts, and build amazing agents. You are friendly, encouraging, and concise.", # Detailed things the Agent has to do
 
     generate_content_config=types.GenerateContentConfig(
-        temperature=0.2, # More deterministic output, closer to 0 more deterministic it is
+        temperature=0.7, # Higher temperature for more creative and varied responses
         max_output_tokens=250
     )
 )

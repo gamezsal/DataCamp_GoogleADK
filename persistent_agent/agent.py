@@ -170,21 +170,21 @@ service = DatabaseSessionService(db_url=DB_URL)
 initial_state = {"user_name": "Bob", "habits": []}
 
 # seeing if we have a pre-existing session
-# Moved to main block to avoid import side-effects and async errors
-# resp = service.list_sessions(app_name=APP_NAME, user_id=USER_ID)
-# if resp.sessions:
-#     SESSION_ID = resp.sessions[0].id
-#     print("Continuing session:", SESSION_ID)
-# else:
-#     SESSION_ID = service.create_session(
-#         app_name=APP_NAME,
-#         user_id=USER_ID,
-#         state=initial_state,
-#     ).id
-#     print("Created new session:", SESSION_ID)
+# seeing if we have a pre-existing session
+resp = service.list_sessions(app_name=APP_NAME, user_id=USER_ID)
+if resp.sessions:
+    SESSION_ID = resp.sessions[0].id
+    print("Continuing session:", SESSION_ID)
+else:
+    SESSION_ID = service.create_session(
+        app_name=APP_NAME,
+        user_id=USER_ID,
+        state=initial_state,
+    ).id
+    print("Created new session:", SESSION_ID)
 
 # creating our runner
-# runner = Runner(agent=habit_agent, app_name=APP_NAME, session_service=service)
+runner = Runner(agent=habit_agent, app_name=APP_NAME, session_service=service)
 
 root_agent = habit_agent
 
